@@ -1,0 +1,57 @@
+---
+title: "Prática em R 1"
+name: João Pedro Moro Bolognini
+---
+Criando duas variáveis e atribuindo valores para suas idades como números
+inteiros. Imprima no console a partir de um teste lógico quem é mais velho.
+```{r}
+Ana = 8L
+Paulo = 12L
+class(Ana) 
+class(Paulo)
+
+ifelse(Ana < Paulo, "O menino é mais velho", "A menina é mais velha")
+```
+
+Verifique a classe do objeto BOD
+```{r}
+class(BOD)
+```
+Criando um vetor que armazene números de 1 a 10 e imprimindo apenas os valores pares.
+```{r}
+vetor = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+vetor
+for(i in vetor){
+  if (i%%2==0){
+    print(i)
+  }
+}
+```
+Imprimir as 10 últimas linhas do dataframe women existente em R.
+```{r}
+women
+tail(women, n=10)
+women[10:15,]
+```
+Produção de um gráfico com os atributos Sepal.Width e Petal.Length do conjunto de dados Iris.
+Imprimir das linhas 50 até 100.
+```{r}
+colnames(iris)
+graf = iris[50:100,c(2,3)]
+plot(graf)
+```
+Criando dois vetor de tamanhos iguais, somandos as posições equivalentes e mostrando o resultado
+```{r}
+v1 = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+v2 = c(11, 12, 13, 14, 15, 16, 17, 18 ,19, 20)
+print(v1+v2)
+```
+Imprimindo o número de linhas e colunas, nomes das linhas e das colunas do conjunto CO2.
+```{r}
+#length(CO2[1])
+#length(CO2[2])
+dim(CO2)[1]
+dim(CO2)[2]
+rownames(CO2)
+colnames(CO2)
+```
