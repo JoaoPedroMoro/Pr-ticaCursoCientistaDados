@@ -1,0 +1,106 @@
+---
+title: "Prática-1-R"
+João Pedro Moro Bolognini
+---
+
+Importando a planilha tempo.csv
+```{r}
+#importa dados, string vazio como NA, string como fatores
+dados = read.csv("Tempo.csv", sep = ";", na.strings="", stringsAsFactors=T)
+head(dados)
+summary(dados)
+```
+Precisa retirar o menos da aparencia e colocar a moda (chuva/sol), a temperatura estrapola os limites
+de -130 - 130 F, a umidade estrapola o limite de 100 e possuis valores ausentes (NA's), o vento
+possui valores ausentes (NA's).
+
+Explorar dados, colunas categóricas (Não numérico)
+```{r}
+# Vento
+counts = table(dados$Vento)
+barplot(counts, main="Vento", xlab="Vento")
+# Jogar
+counts = table(dados$Jogar)
+barplot(counts, main="Jogar", xlab="Jogar")
+# Aparencia
+counts = table(dados$Aparencia)
+barplot(counts, main="Aparência", xlab="Aparência")
+```
+
+Explorar colunas numéricas
+```{r}
+# Temperatura
+summary(dados$Temperatura)
+boxplot(dados$Temperatura)
+hist(dados$Temperatura)
+# Umidade
+summary(dados$Umidade)
+boxplot(dados$Umidade)
+hist(dados$Umidade)
+```
+
+Valores faltantes (NA's)
+```{r}
+# valores faltantes NAs
+dados[!complete.cases(dados),]
+```
+
+Aparência - domínio (sol, chuva, nublado)
+```{r}
+summary(dados$Aparencia)
+# Não existe valores ausentes
+dados[is.na(dados$Aparencia),]
+# Vamos preencher os valores fora do domínio com a moda (sol)
+dados[dados$Aparencia == "menos", ]$Aparencia = "sol"
+# Verificando novamente
+summary(dados$Aparencia)
+# Remoção de levels(opções) não utilizados
+dados$Aparencia =   factor(dados$Aparencia)
+#visualizar novamente
+summary(dados$Aparencia)
+```
+
+Temperatura - dominio (-130 até 130 F)
+```{r}
+summary(dados$Temperatura)
+# Não existe valores ausentes
+dados[is.na(dados$Temperatura),]
+# Visualizar dados fora do domínio
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura
+# Uma opção é preencher esses dados fora do domínio com a mediana da temperatura
+median(dados$Temperatura)
+# Substituir esses valores pela mediana
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura = median(dados$Temperatura)
+# Visualiza novamente se existem dados fora do domínio
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura
+summary(dados$Temperatura)
+```
+
+Umidade - domínio (0 - 100) e valores ausentes
+```{r}
+summary(dados$Umidade)
+# Existe valores ausentes
+dados[is.na(dados$Umidade),]
+# Substituir a umidade da NA pela mediana
+median(dados$Temperatura)
+dados[is.na(dados$Umidade),]$Umidade = median(dados$Umidade,na.rm = T)
+summary(dados$Temperatura)
+# Existem valores fora do domínio
+dados[dados$Umidade < 0 | dados$Umidade > 100,]$Umidade
+# Substituição desses valores fora do domínio pela mediana
+dados[dados$Umidade < 0 | dados$Umidade > 100,]$Umidade = median(dados$Umidade)
+# Verificação dos dados
+summary(dados$Temperatura)
+```
+
+Vento - possui valores ausentes
+```{r}
+summary(dados$Vento)
+# Verifica dados ausentes
+dados[is.na(dados$Vento),]
+# Substituir valores ausentes pela moda
+dados[is.na(dados$Vento),]$Vento = 'FALSO'
+# Verifica se ainda há valores ausentes
+dados[is.na(dados$Vento),]
+summary(dados$Vento)
+```
