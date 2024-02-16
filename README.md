@@ -3,3 +3,6 @@ Repositório para códigos de prática do Curso de Ciência de Dados realizado n
 
 ### Prática 0:
 Introdução às linguagens Python e R.
+
+### Prática 1:
+Limpeza e Tratamento de dados em R e Python.
