@@ -12,3 +12,6 @@ Visualização dos dados em R e Python.
 
 ### Prática 3:
 Regressão Linear em R e Python.
+
+### Prática 4:
+Regressão Logística em R e Python.
