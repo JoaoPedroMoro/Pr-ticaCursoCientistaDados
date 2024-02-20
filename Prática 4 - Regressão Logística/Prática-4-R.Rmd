@@ -1,0 +1,64 @@
+---
+title: "Prática 4 R"
+João Pedro Moro Bolognini
+---
+
+Carregando os dados
+```{r}
+dados = read.csv("Eleicao.csv",sep=';',header=T)
+dados
+```
+Situação: 1 = Eleito, 0 = Não Eleito
+Despesas: Gastos em milhares de cada candidato
+
+Visualizando os dados e o gráfico dos dados
+```{r}
+plot(dados$DESPESAS,dados$SITUACAO)
+summary(dados)
+```
+
+Calculando a correlação
+```{r}
+cor(dados$DESPESAS,dados$SITUACAO)
+```
+
+Modelo de Regressão Logística
+```{r}
+modelo = glm(SITUACAO ~ DESPESAS,data=dados,family="binomial") 
+summary(modelo)
+```
+
+Comparando o modelo gerado com os dados
+```{r}
+plot(dados$DESPESAS,dados$SITUACAO,col='red',pch=20)
+points(dados$DESPESAS, modelo$fitted, pch=4)
+```
+
+Testando o modelo com os candidatos atuais
+```{r}
+previsao = predict(modelo,newdata=eleicao,type="response"  )
+previsao = previsao >= 0.5
+previsao
+```
+
+Desempenho do modelo
+```{r}
+confusao = table(prever,eleicao$SITUACAO)
+confusao
+taxa_acerto = (confusao[1] + confusao[4]) / sum(confusao)
+taxa_acerto
+```
+
+Testando o modelo com novos candidatos:
+```{r}
+previsaoeleicao = read.csv("NovosCandidatos.csv",sep=';',header=T)
+previsaoeleicao
+```
+
+Previsão
+```{r}
+previsaoeleicao$RESULT = predict(modelo,newdata=prevereleicao,type="response") 
+previsaoeleicao$RESULT
+previsaoeleicao$RESULT >= 0.5
+```
+
