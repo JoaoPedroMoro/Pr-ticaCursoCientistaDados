@@ -1,0 +1,77 @@
+---
+title: "Prática 3 em R"
+João Pedro Moro Bolognini
+---
+
+Importando os dados
+```{r}
+dados = read.csv("slr12.csv",sep = ";")
+dados
+```
+
+Gerando o modelo de custo inicio x frequencia anual
+```{r}
+modelo = lm(CusInic ~ FrqAnual, data=dados)
+modelo
+```
+Sabemos que a cada 1 de frequencia anual é aumentado 0.3732 do custo inicial
+
+
+Construíndo o gráfico
+```{r}
+plot(CusInic ~ FrqAnual, data=dados)
+abline(modelo)
+```
+Testando o modelo
+```{r}
+valor =  600
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  700
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  800
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  900
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1000
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1100
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1200
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1300
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1400
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+
+valor =  1500
+previsao =  predict(modelo,data.frame(FrqAnual = valor))
+previsao = paste0("Previsão de Custo Inicial R$: ",round(previsao,2), " para a frequência anual de ", valor)
+print(previsao)
+```
+

@@ -8,4 +8,7 @@ Introdução às linguagens R e Python.
 Limpeza e Tratamento de dados em R e Python.
 
 ### Prática 2:
-Visualização dos dados em R e Python
+Visualização dos dados em R e Python.
+
+### Prática 3:
+Regressão Linear em R e Python.
