@@ -1,0 +1,49 @@
+---
+title: "Prática 7 - Neural Network and Deep Learning"
+João Pedro Moro Bolognini
+---
+
+Baixando e importando o Random Forest
+```{r}
+#install.packages('randomForest',dependencies=T)
+library(randomForest)
+```
+
+Carregando os dados
+```{r}
+soja = read.csv('soybean.csv', stringsAsFactors = T)
+soja
+dim(soja)
+
+#classes
+unique(soja$class)
+```
+
+Gerando conjuntos de treinamento e teste
+```{r}
+#gera dois conjuntos de dados aleatórios, para teste e treino
+#com 70 e 30% das instâncias, aproximadamente
+amostra = sample(2,683,replace=T, prob=c(0.7,0.3))
+sojatreino = soja[amostra==1,]
+sojateste = soja[amostra==2,]
+```
+
+Constrói o modelo usando dados de treino
+```{r}
+floresta = randomForest(class ~ .,data=sojatreino, ntree=100,proximity=T)
+floresta
+```
+
+Testando o modelo e fazendo a previsão com os dados de treino
+```{r}
+previsao = predict(floresta,sojateste)
+previsao
+```
+
+Gerando a matriz de confusão e calculando a precisão
+```{r}
+floresta$confusion
+
+1- mean(floresta$confusion[,'class.error'])
+```
+

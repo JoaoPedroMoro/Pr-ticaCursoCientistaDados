@@ -1,0 +1,78 @@
+---
+title: "Prática 5 - Séries Temporais"
+João Pedro Moro Bolognini
+---
+
+Baixando e importando bibliotecas
+```{r}
+#install.packages("forecast")
+library(forecast)
+```
+
+Observando os dados
+```{r}
+AirPassengers
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+```
+
+Observação dos gráficos
+```{r}
+plot(AirPassengers)
+plot(aggregate(AirPassengers))
+```
+
+Geração de uma janela
+```{r}
+subst = window(AirPassengers,start=c(1960,1), end=c(1960,12))
+subst
+plot(subst)
+```
+
+Decomposição dos dados
+```{r}
+dec = decompose(AirPassengers)
+dec
+```
+
+Observação dos atributos
+```{r}
+attributes(dec)
+dec$seasonal
+```
+
+Análise dos elementos da decomposição
+```{r}
+plot(dec)
+plot(dec$x)
+plot(dec$seasonal)
+plot(dec$trend)
+plot(dec$random)
+```
+
+Suavização Exponencial
+```{r}
+ets = ets(AirPassengers)
+ets
+```
+
+Previsão 
+```{r}
+previsao = forecast(ets, h=12)
+plot(previsao)
+previsao
+```
+
+Criando o arima
+```{r}
+arima = auto.arima(AirPassengers)
+arima
+```
+
+Previsão com o arima
+```{r}
+previsao = forecast(arima, h=12)
+plot(previsao)
+previsao
+```
