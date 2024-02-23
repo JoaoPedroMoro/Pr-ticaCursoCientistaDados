@@ -22,5 +22,5 @@ Séries Temporais em R e Python.
 ### Prática 6
 Machine Learning em Python.
 
-# Prática 7
+### Prática 7
 Neural Network e Deep Learning em R e Python.
