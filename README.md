@@ -24,3 +24,6 @@ Machine Learning em Python.
 
 ### Prática 7:
 Neural Network e Deep Learning em R e Python.
+
+### Projeto Final
+Utilizando todos os conceitos usados anteriormente e durante o curso, é feito um modelo de predição, de um certo banco de dados hospeado no postgreSQL (cujo arquivo estará junto a pasta), para prever se um futuro cliente irá honrar ou não o compromisso do seu empréstimo.
